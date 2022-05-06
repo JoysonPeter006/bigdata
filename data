@@ -1,2 +1,3 @@
 sqoop-export --connect jdbc:mysql://cdb22dw011.c0lf9xyp8cv9.ap-south-1.rds.amazonaws.com/cdb21dw011 --username cdb22dw011 -P --table karthick --export-dir /StudentData1/part*
 mysql -h cdb22dw011.c0lf9xyp8cv9.ap-south-1.rds.amazonaws.com -u cdb22dw011 -p
+sqoop-import --connect jdbc:mysql://cdb22dw011.c0lf9xyp8cv9.ap-south-1.rds.amazonaws.com/test --username cdb22dw011 -P --table customer --incremental append --check-column cust_id --last-value 115 --target-dir /customer
