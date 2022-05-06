@@ -9,3 +9,16 @@ sqoop-import --connect jdbc:mysql://cdb22dw011.c0lf9xyp8cv9.ap-south-1.rds.amazo
     hdfs dfs -rm -r /user/ubh01/customer
 ​[14:58] Karthick Selvam (Guest)
     sqoop-import --connect jdbc:mysql://cdb22dw011.c0lf9xyp8cv9.ap-south-1.rds.amazonaws.com/test --username cdb22dw011 -P --table customer --hive-import
+[15:22] Karthick Selvam (Guest)
+    hdfs dfs -ls /customer
+​[15:22] Karthick Selvam (Guest)
+    hdfs dfs -get /customer/part* /home/ubh01
+​[15:22] Karthick Selvam (Guest)
+    cat part* > customer.txt
+​[15:22] Karthick Selvam (Guest)
+    hdfs dfs -mkdir /input
+​[15:23] Karthick Selvam (Guest)
+    hdfs dfs -put /home/ubh01/customer.txt /input
+​[15:23] Karthick Selvam (Guest)
+    sqoop-export --connect jdbc:mysql://cdb22dw011.c0lf9xyp8cv9.ap-south-1.rds.amazonaws.com/test --username cdb22dw011 -P --table customer --update-key cust_id --update-mode allowinsert --export-dir /input/customer.txt
+ 
