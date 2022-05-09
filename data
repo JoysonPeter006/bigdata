@@ -22,3 +22,24 @@ sqoop-import --connect jdbc:mysql://cdb22dw011.c0lf9xyp8cv9.ap-south-1.rds.amazo
 ​[15:23] Karthick Selvam (Guest)
     sqoop-export --connect jdbc:mysql://cdb22dw011.c0lf9xyp8cv9.ap-south-1.rds.amazonaws.com/test --username cdb22dw011 -P --table customer --update-key cust_id --update-mode allowinsert --export-dir /input/customer.txt
  
+ 
+ create table karthick(
+age int,
+gender string,
+name string,
+course string,
+roll int,
+marks int,
+email string)
+row format delimited
+fields terminated by ','
+TBLPROPERTIES ("skip.header.line.count"="1");
+=============================================================================
+# Load the data from HDFS Location -> move the file from original location to hive architecture local
+#if you drop the data original file is lost
+load data inpath '/karthick/StudentData.csv' overwrite into table karthick;
+=============================================================================
+#Load from the Local File System
+#Keep the original file from local file system
+load data local inpath '/home/ubh01/Desktop/StudentData.csv' overwrite into table karthick;
+============================
