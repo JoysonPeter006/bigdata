@@ -97,3 +97,27 @@ set hive.exec.dynamic.partition.mode=nonstrict;
  
 
 insert into table dyna_part partition(course) select age,gender,name,roll, marks,email,course from karthick where course = 'DB';
+=============================
+set hive.exec.dynamic.partition=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+set hive.enforce.bucketing=true;
+=========================================================
+create table karthick_bucket(
+age int,
+gender string,
+name string,
+course string,
+roll int,
+marks int,
+email string)
+clustered by(age) into 2 buckets stored as textfile;
+=============================================================
+create table selvam_bucket(
+age int,
+gender string,
+name string,
+course string,
+roll int,
+marks int,
+email string)
+clustered by(course) into 6 buckets stored as textfile;
